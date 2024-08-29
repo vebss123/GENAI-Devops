@@ -14,24 +14,27 @@ steps:
     args:
       - 'push'
       - 'asia-south1-docker.pkg.dev/ankercloud-testing-account/genai/flask-login-app1:latest'
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    gcloud ai custom-jobs create \
-      --region=asia-south-1 \
-      --display-name="Run Tests with Gemini 1.0" \
-      --python-package-uris=gs://gen-ai-devops/test-script.tar \
-      --script=gemini1_0_test_script.py \
-      --args="https://github.com/vebss123/GENAI-Devops.git"
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    gcloud run deploy my-app \
-    --image gcr.io/ankercloud-testing-account/my-app \
-    --platform managed \
-    --region asia-south-1
+  # Create a custom job to run tests with Gemini 1.0
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud ai custom-jobs create \
+          --region=asia-south-1 \
+          --display-name="Run Tests with Gemini 1.0" \
+          --python-package-uris=gs://gen-ai-devops/test-script.tar \
+          --script=gemini1_0_test_script.py \
+          --args="https://github.com/vebss123/GENAI-Devops.git"
+
+  # Deploy the application to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy my-app \
+          --image gcr.io/ankercloud-testing-account/my-app \
+          --platform managed \
+          --region asia-south-1
