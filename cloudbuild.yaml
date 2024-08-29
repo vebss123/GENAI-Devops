@@ -1,9 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/ACT-MS-Testing/my-app', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-app', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/ACT-MS-Testing/my-app']
+  args: ['push', 'gcr.io/$PROJECT_ID/my-app']
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
