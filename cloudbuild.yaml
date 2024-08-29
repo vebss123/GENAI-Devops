@@ -5,7 +5,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/my-app']
 
-# Step to run tests using Gemini 1.0
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
@@ -16,22 +15,8 @@ steps:
       --display-name="Run Tests with Gemini 1.0" \
       --python-package-uris=gs://your-bucket/path/to/your/test-script.tar.gz \
       --script=path/to/gemini1_0_test_script.py \
-      --args="gcr.io/$PROJECT_ID/my-app"
+      --args="https://github.com/your-org/your-repo"
 
-# Step to run tests using Gemini 1.5
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    gcloud ai custom-jobs create \
-      --region=us-central1 \
-      --display-name="Run Tests with Gemini 1.5" \
-      --python-package-uris=gs://your-bucket/path/to/your/test-script.tar.gz \
-      --script=path/to/gemini1_5_test_script.py \
-      --args="gcr.io/$PROJECT_ID/my-app"
-
-# Deployment step, only runs if the tests pass
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
@@ -41,5 +26,3 @@ steps:
     --image gcr.io/$PROJECT_ID/my-app \
     --platform managed \
     --region us-central1
-
-timeout: 1200s
