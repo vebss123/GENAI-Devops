@@ -25,7 +25,7 @@ steps:
           --region=asia-south-1 \
           --display-name="Run Tests with Gemini 1.0" \
           --python-package-uris=gs://gen-ai-devops/test-script.tar \
-          --script=gemini1_0_test_script.py \
+          --script=gs://gen-ai-devops/gemini1_0_test_script.py \
           --args="https://github.com/vebss123/GENAI-Devops.git"
 
   # Deploy the application to Cloud Run
