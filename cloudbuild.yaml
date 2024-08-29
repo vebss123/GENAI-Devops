@@ -23,6 +23,6 @@ steps:
   - '-c'
   - |
     gcloud run deploy my-app \
-    --image gcr.io/ACT-MS-Testing/my-app \
+    --image gcr.io/ankercloud-testing-account/my-app \
     --platform managed \
     --region asia-south-1
