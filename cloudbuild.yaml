@@ -24,7 +24,7 @@ steps:
         gcloud ai custom-jobs create \
           --region=asia-south1 \
           --display-name="Run Tests with Gemini 1.0" \
-          --worker-pool-spec='[{"machineSpec":{"machineType":"n1-standard-4"},"replicaCount":1,"containerSpec":{"imageUri":"asia-south1-docker.pkg.dev/ankercloud-testing-account/genai/flask-login-app1:latest","args":["python","gemini1_0_test_script.py","https://github.com/vebss123/GENAI-Devops.git"]}}]'
+          --worker-pool-spec="[{'machineSpec':{'machineType':'n1-standard-4'},'replicaCount':1,'containerSpec':{'imageUri':'asia-south1-docker.pkg.dev/ankercloud-testing-account/genai/flask-login-app1:latest','args':['python','gemini1_0_test_script.py','https://github.com/vebss123/GENAI-Devops.git']}}]"
 
   # Deploy the application to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
