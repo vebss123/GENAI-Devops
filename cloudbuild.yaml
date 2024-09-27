@@ -10,7 +10,7 @@ steps:
 - id: "Deploy Cloud Run Service"
   name: 'gcr.io/cloud-builders/gcloud:latest'
   args: [
-    'run', 'deploy', 'qr-fe', 
+    'run', 'deploy', 'gen-ai', 
     '--service-account', '263666966446-compute@developer.gserviceaccount.com',
     '--allow-unauthenticated',
     '--memory', '1024Mi',
