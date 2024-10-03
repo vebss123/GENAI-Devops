@@ -10,9 +10,9 @@ env:
   REGION: us-central1  
   SERVICE_NAME: deploy-genai-cloudrun
   IMAGE_NAME: test-application
-  REPO_NAME: gen-ai-poc
+  REPO_NAME: gen-ai-poc/ai-poc
   
-#us-central1-docker.pkg.dev/ankercloud-testing-account/gen-ai-poc
+#us-central1-docker.pkg.dev/ankercloud-testing-account/gen-ai-poc/ai-poc
 jobs:
   deploy:
     runs-on: ubuntu-latest
